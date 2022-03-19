@@ -100,6 +100,7 @@ import net.minecraft.src.MEDMEX.Config.ConfigDrawn;
 import net.minecraft.src.MEDMEX.Config.ConfigFriends;
 import net.minecraft.src.MEDMEX.Config.ConfigWaypoints;
 import net.minecraft.src.MEDMEX.Modules.Player.FastPlace;
+import net.minecraft.src.MEDMEX.Modules.Player.SleepWalk;
 import net.minecraft.src.MEDMEX.Modules.World.Packetmine;
 import net.minecraft.src.MEDMEX.UI.MainMenu;
 
@@ -990,7 +991,7 @@ public abstract class Minecraft implements Runnable {
         if (this.currentScreen == null && this.thePlayer != null) {
             if (this.thePlayer.health <= 0) {
                 this.displayGuiScreen((GuiScreen)null);
-            } else if (this.thePlayer.isPlayerSleeping() && this.theWorld != null && this.theWorld.multiplayerWorld) {
+            } else if (this.thePlayer.isPlayerSleeping() && this.theWorld != null && this.theWorld.multiplayerWorld && !SleepWalk.instance.isEnabled()) {
                 this.displayGuiScreen(new GuiSleepMP());
             }
         } else if (this.currentScreen != null && this.currentScreen instanceof GuiSleepMP && !this.thePlayer.isPlayerSleeping()) {

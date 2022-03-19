@@ -19,7 +19,7 @@ public class ColorUtil {
 		
 	}
 	public static int astolfoColorsDraw(int yOffset, int yTotal) {
-        return astolfoColorsDraw(yOffset, yTotal, 2900F);
+        return astolfoColorsDraw(yOffset, yTotal, 2000F);
      }
 	
 	 public static int astolfoColorsDraw(int yOffset, int yTotal, float speed) {
@@ -32,7 +32,6 @@ public class ColorUtil {
             hue = 0.5F - (hue - 0.5f);
          }
          hue += 0.5F;
-         return Color.HSBtoRGB(hue, 0.5f, 1F);
+         return Color.HSBtoRGB(hue, 0.1f, 1f);
       }
-
 }

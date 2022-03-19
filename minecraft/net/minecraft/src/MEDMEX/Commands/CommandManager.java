@@ -33,6 +33,8 @@ public class CommandManager {
 		commands.add(new Drawn());
 		commands.add(new PacketCancel());
 		commands.add(new PacketLogger());
+		commands.add(new SpawnTP());
+		commands.add(new Wake());
 		
 	}
 	

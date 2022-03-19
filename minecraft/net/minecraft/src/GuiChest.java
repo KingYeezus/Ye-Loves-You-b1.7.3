@@ -2,6 +2,9 @@ package net.minecraft.src;
 
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.src.MEDMEX.Client;
+import net.minecraft.src.MEDMEX.Modules.Player.Freecam;
+
 public class GuiChest extends GuiContainer {
     private IInventory upperChestInventory;
     private IInventory lowerChestInventory;
@@ -17,6 +20,14 @@ public class GuiChest extends GuiContainer {
         this.inventoryRows = var2.getSizeInventory() / 9;
         this.ySize = var4 + this.inventoryRows * 18;
     }
+    
+
+    public void initGui() {
+    	super.initGui();
+    	int posY = (height - ySize)/2 - 20;
+    	this.controlList.add(new GuiButton(1,width /2-88,posY,60,20,"Mount"));
+    	this.controlList.add(new GuiButton(2,width /2+28,posY,60,20,"Freecam"));
+    }
 
     protected void drawGuiContainerForegroundLayer() {
         this.fontRenderer.drawString(this.lowerChestInventory.getInvName(), 8, 6, 4210752);
@@ -31,5 +42,28 @@ public class GuiChest extends GuiContainer {
         int var4 = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(var3, var4, 0, 0, this.xSize, this.inventoryRows * 18 + 17);
         this.drawTexturedModalRect(var3, var4 + this.inventoryRows * 18 + 17, 0, 126, this.xSize, 96);
+    }
+    
+    protected void actionPerformed(GuiButton par1) {
+    	if(par1.id == 1) {
+    		try {
+    			for(Entity e : mc.theWorld.loadedEntityList) {
+    				if(e instanceof EntityBoat) {
+    					if(mc.thePlayer.getDistanceSqToEntity(e) < 6) {
+    						mc.playerController.interactWithEntity(mc.thePlayer, e);
+    					}
+    				}
+    			}
+    			}catch(Exception e){
+    		
+    		}
+    	}
+    	if(par1.id == 2) {
+    		try {
+    			Freecam.instance.toggle();
+    			}catch(Exception e){
+    		
+    		}
+    	}  	
     }
 }

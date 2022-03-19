@@ -1,9 +1,13 @@
 package net.minecraft.src;
 
+import java.awt.Color;
+
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.src.MEDMEX.Client;
+import net.minecraft.src.MEDMEX.Modules.Render.ESP;
 import net.minecraft.src.MEDMEX.Modules.Render.NoRender;
+import net.minecraft.src.MEDMEX.Utils.ChamsUtils;
 
 public class RenderBoat extends Render {
     protected ModelBase modelBoat;
@@ -34,6 +38,19 @@ public class RenderBoat extends Render {
         this.loadTexture("/item/boat.png");
         GL11.glScalef(-1.0F, -1.0F, 1.0F);
         this.modelBoat.render(0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+        if(ESP.instance.isEnabled() && Client.settingsmanager.getSettingByName("Vehicle ESP").getValBoolean()) {
+        	Color c = ESP.instance.getColor(var1);
+        	this.modelBoat.render(0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+	        ChamsUtils.renderOne();
+	        this.modelBoat.render(0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+	        ChamsUtils.renderTwo();
+	        this.modelBoat.render(0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+	        ChamsUtils.renderThree();
+	        ChamsUtils.renderFour();
+	        GL11.glColor4f((float)c.getRed() / 255, (float)c.getGreen()/ 255, (float)c.getBlue()/ 255, (float)	c.getAlpha() / 255);
+	        this.modelBoat.render(0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+	        ChamsUtils.renderFive();
+        }
         GL11.glPopMatrix();
     }
 

@@ -99,6 +99,24 @@ public class RenderLiving extends Render {
             float var25 = var1.getEntityBrightness(var9);
             int var18 = this.getColorMultiplier(var1, var25, var9);
             
+            if(ESP.instance.isEnabled() && Client.settingsmanager.getSettingByName("ESP Mode").getValString().equalsIgnoreCase("Filled")) {
+            	if(ESP.instance.shouldRenderEntity(var1)) {
+	            	GL11.glPushMatrix();
+	                GL11.glPushAttrib(1048575);
+	                GL11.glPolygonMode(1028, 6913);
+	                GL11.glDisable(3553);
+	                GL11.glDisable(2896);
+	                GL11.glDisable(2929);
+	                GL11.glEnable(2848);
+	                GL11.glEnable(3042);
+	                Color c = ESP.instance.getColor(var1);
+	                GL11.glColor4f((float)c.getRed() / 255, (float)c.getGreen()/ 255, (float)c.getBlue()/ 255, (float)	c.getAlpha() / 255);
+	                this.mainModel.render(var16, var15, var13, var11 - var10, var12, var14);
+	                GL11.glPopAttrib();
+	                GL11.glPopMatrix();
+            	}
+            }
+            
             if ((var18 >> 24 & 255) > 0 || var1.hurtTime > 0 || var1.deathTime > 0) {
                 GL11.glDisable(3553 /*GL_TEXTURE_2D*/);
                 GL11.glDisable(3008 /*GL_ALPHA_TEST*/);

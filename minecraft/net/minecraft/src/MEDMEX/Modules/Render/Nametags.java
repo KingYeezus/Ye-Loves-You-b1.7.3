@@ -32,8 +32,9 @@ public class Nametags extends Module{
 	}
 	
 	public void onRender() {
-		for(EntityPlayer p : mc.theWorld.playerEntities) {
-			if(p != mc.thePlayer) {
+		for(Entity e : mc.theWorld.loadedEntityList) {
+			if(e != mc.thePlayer && e instanceof EntityPlayer) {
+				EntityPlayer p = (EntityPlayer)e;
 				renderNameTag(p);
 			}
 		}

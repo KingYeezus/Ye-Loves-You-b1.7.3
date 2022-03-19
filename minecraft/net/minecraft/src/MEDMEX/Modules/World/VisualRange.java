@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
+import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.MEDMEX.Event.Event;
 import net.minecraft.src.MEDMEX.Event.listeners.EventUpdate;
 import net.minecraft.src.MEDMEX.Modules.Module;
@@ -19,7 +20,9 @@ public class VisualRange extends Module{
 	public void onEvent(Event e) {
 		if(e instanceof EventUpdate) {
 			if(e.isPre()) {
-				int players = mc.theWorld.playerEntities.size() - 1;
+				List<EntityPlayer> p = mc.theWorld.playerEntities;
+				p.remove(mc.thePlayer);
+				int players = p.size();
 				this.attribute = " §7[§f"+String.valueOf(players)+"§7]";
 			}
 		}

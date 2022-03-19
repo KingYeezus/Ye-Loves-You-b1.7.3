@@ -52,7 +52,7 @@ public class EntityPlayerSP extends EntityPlayer {
             }
 
             if (this.mc.currentScreen != null) {
-                this.mc.displayGuiScreen((GuiScreen)null);
+                //this.mc.displayGuiScreen((GuiScreen)null);
             }
 
             if (this.timeInPortal == 0.0F) {

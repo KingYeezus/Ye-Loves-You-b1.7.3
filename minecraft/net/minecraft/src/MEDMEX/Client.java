@@ -8,6 +8,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.MEDMEX.UI.HUD;
 import net.minecraft.src.de.Hero.settings.SettingsManager;
+import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.Packet;
 import net.minecraft.src.MEDMEX.Commands.CommandManager;
 import net.minecraft.src.MEDMEX.Config.Config;
@@ -29,7 +30,7 @@ import net.minecraft.src.MEDMEX.Modules.World.*;
 
 public class Client {
 	public static int protocolver = 14;
-	public static String name = "Ye Loves You", version = "7";
+	public static String name = "Ye Loves You", version = "8";
 	public static CopyOnWriteArrayList<Module> modules = new CopyOnWriteArrayList<Module>();
 	public static CopyOnWriteArrayList<String> friends = new CopyOnWriteArrayList<String>();
 	public static CopyOnWriteArrayList<String> authme = new CopyOnWriteArrayList<String>();
@@ -37,7 +38,6 @@ public class Client {
 	public static HUD hud = new HUD();
 	public static CommandManager commandManager = new CommandManager();
 	public static SettingsManager settingsmanager;
-	public static net.minecraft.src.de.Hero.clickgui.ClickGUI clickgui;
 
 	public static void startup(){
 		settingsmanager = new SettingsManager();
@@ -109,6 +109,11 @@ public class Client {
 		modules.add(new AutoTNT());
 		modules.add(new AutoTool());
 		modules.add(new Fat());
+		modules.add(new Blink());
+		modules.add(new FastPortal());
+		modules.add(new Radar());
+		modules.add(new SleepWalk());
+		modules.add(new Spider());
 		try {
 		Config.load();
 		}catch(Exception e) {
@@ -118,9 +123,6 @@ public class Client {
 		ConfigFriends.load();
 		ConfigAuthme.load();
 		ConfigDrawn.load();
-		clickgui = new net.minecraft.src.de.Hero.clickgui.ClickGUI();
-		
-		
 		
 		System.out.println("Loading "+ name +" "+ version);
 	}
@@ -173,7 +175,15 @@ public static void onRenderEntities() {
 		  if(!m.toggled)
 			  continue;
 		  m.onRender();
+	  }
 }
+
+public static void onLog(String bound, String p) {
+	for(Module m : modules) {
+		  if(!m.toggled)
+			  continue;
+		  m.onLog(bound, p);
+	  }
 }
 
 public static void getPacket(EventPacket e) {
@@ -205,7 +215,7 @@ public static List<Module> getModules(){
 }
 
 public static void addChatMessage(String message) {
-	message = "\2474>\u00A77" + message;
+	message = "§b[§6Y§b]§r " + message;
 	Minecraft.theMinecraft.thePlayer.addChatMessage(new String(message));
 }
 }

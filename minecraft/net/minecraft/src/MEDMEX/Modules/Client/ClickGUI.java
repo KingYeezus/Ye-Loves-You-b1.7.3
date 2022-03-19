@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.lwjgl.input.Keyboard;
 
 import net.minecraft.src.MEDMEX.Client;
+import net.minecraft.src.MEDMEX.ClickGui.ClickGui;
 import net.minecraft.src.MEDMEX.Modules.Module;
 import net.minecraft.src.MEDMEX.Modules.Module.Category;
 import net.minecraft.src.MEDMEX.MyClickGUI.GuiClick;
@@ -25,7 +26,7 @@ public class ClickGUI extends Module {
 	
 	public void onEnable() {
 		super.onEnable();
-		mc.displayGuiScreen(new GuiClick());
+		mc.displayGuiScreen(new ClickGui());
 		toggle();
 	}
 	

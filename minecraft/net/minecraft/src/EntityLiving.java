@@ -2,6 +2,8 @@ package net.minecraft.src;
 
 import java.util.List;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.src.MEDMEX.Modules.Movement.Spider;
 import net.minecraft.src.MEDMEX.Modules.Player.NoCollide;
 
 public abstract class EntityLiving extends Entity {
@@ -555,6 +557,8 @@ public abstract class EntityLiving extends Entity {
         int var1 = MathHelper.floor_double(this.posX);
         int var2 = MathHelper.floor_double(this.boundingBox.minY);
         int var3 = MathHelper.floor_double(this.posZ);
+        if(Spider.instance.isEnabled() && Minecraft.theMinecraft.thePlayer.isCollidedHorizontally) 
+        	return true;
         return this.worldObj.getBlockId(var1, var2, var3) == Block.ladder.blockID;
     }
 

@@ -10,6 +10,7 @@ import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Random;
 import net.minecraft.client.Minecraft;
+import net.minecraft.src.MEDMEX.Client;
 import net.minecraft.src.MEDMEX.Modules.Client.ChatTime;
 
 import java.time.LocalDateTime;
@@ -348,6 +349,16 @@ public class NetClientHandler extends NetHandler {
     }
 
     public void handleChat(Packet3Chat var1) {
+    	if(var1.message.contains("joined the game")) {
+    		String player = var1.message.split(" ")[0];
+    		Client.onLog("In", player.substring(2));
+    	}
+    	if(var1.message.contains("left the game")) {
+    		String player = var1.message.split(" ")[0];
+    		Client.onLog("Out", player.substring(2));
+    	}
+    	
+    	
     	if(ChatTime.instance.isEnabled()) {
     	if(var1.message.startsWith("<")) {
     	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");  
@@ -393,7 +404,7 @@ public class NetClientHandler extends NetHandler {
 
     public void handleHandshake(Packet2Handshake var1) {
         if (var1.username.equals("-")) {
-            this.addToSendQueue(new Packet1Login(this.mc.session.username, 14));
+            this.addToSendQueue(new Packet1Login(this.mc.session.username, Client.protocolver));
         } else {
             try {
                 URL var2 = new URL("http://www.minecraft.net/game/joinserver.jsp?user=" + this.mc.session.username + "&sessionId=" + this.mc.session.sessionId + "&serverId=" + var1.username);
@@ -401,7 +412,7 @@ public class NetClientHandler extends NetHandler {
                 String var4 = var3.readLine();
                 var3.close();
                 if (var4.equalsIgnoreCase("ok")) {
-                    this.addToSendQueue(new Packet1Login(this.mc.session.username, 14));
+                    this.addToSendQueue(new Packet1Login(this.mc.session.username, Client.protocolver));
                 } else {
                     this.netManager.networkShutdown("disconnect.loginFailedInfo", var4);
                 }

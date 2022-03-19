@@ -3,6 +3,8 @@ package net.minecraft.src;
 import java.util.Iterator;
 import java.util.List;
 
+import net.minecraft.src.MEDMEX.Modules.Player.SleepWalk;
+
 public abstract class EntityPlayer extends EntityLiving {
     public InventoryPlayer inventory = new InventoryPlayer(this);
     public Container inventorySlots;
@@ -581,7 +583,7 @@ public abstract class EntityPlayer extends EntityLiving {
             this.setRenderOffsetForSleep(var5);
             this.setPosition((double)((float)var1 + var6), (double)((float)var2 + 0.9375F), (double)((float)var3 + var7));
         } else {
-            this.setPosition((double)((float)var1 + 0.5F), (double)((float)var2 + 0.9375F), (double)((float)var3 + 0.5F));
+            this.setPosition((double)((float)var1 + 10.5F), (double)((float)var2 + 0.9375F), (double)((float)var3 + 0.5F));
         }
 
         this.sleeping = true;
@@ -684,11 +686,11 @@ public abstract class EntityPlayer extends EntityLiving {
     }
 
     public boolean isPlayerSleeping() {
-        return this.sleeping;
+        return this.sleeping && !SleepWalk.instance.isEnabled();
     }
 
     public boolean isPlayerFullyAsleep() {
-        return this.sleeping && this.sleepTimer >= 100;
+        return this.sleeping && this.sleepTimer >= 100 && !SleepWalk.instance.isEnabled();
     }
 
     public int getSleepTimer() {

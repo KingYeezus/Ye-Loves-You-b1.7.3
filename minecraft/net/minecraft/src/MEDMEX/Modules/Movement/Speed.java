@@ -7,6 +7,8 @@ import net.minecraft.src.Entity;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.Packet;
 import net.minecraft.src.Packet11PlayerPosition;
+import net.minecraft.src.Packet15Place;
+import net.minecraft.src.Packet7UseEntity;
 import net.minecraft.src.Timer;
 import net.minecraft.src.MEDMEX.Client;
 import net.minecraft.src.MEDMEX.Event.Event;
@@ -80,6 +82,7 @@ public class Speed extends Module{
 			               if (mc.thePlayer.hurtTime != mc.thePlayer.maxHurtTime || mc.thePlayer.maxHurtTime <= 0) {
 			                  if (!Keyboard.isKeyDown(mc.gameSettings.keyBindJump.keyCode)) {
 			                     double val = Client.settingsmanager.getSettingByName("Speed").getValDouble() - (Client.settingsmanager.getSettingByName("Speed").getValDouble() - 1.0D) * 0.5D;		                
+			                     
 			                     fixMovementSpeed(csp * val, true);
 			                  }
 			               }

@@ -42,9 +42,10 @@ public class ForceField extends Module{
 					if(entities.get(i) instanceof EntityPlayer && entities.get(i) != mc.thePlayer && Client.settingsmanager.getSettingByName("Attack Players").getValBoolean()) {
 						if(mc.thePlayer.getDistanceToEntity((Entity)entities.get(i)) <= 6) {
 							EntityPlayer p = (EntityPlayer) entities.get(i);
-							if(!Client.friends.contains(p.username))
+							if(!Client.friends.contains(p.username)) {
 								target =  (Entity)entities.get(i);
 								mc.playerController.attackEntity(mc.thePlayer, (Entity)entities.get(i));
+							}
 					}
 					}
 					if(entities.get(i) instanceof EntityMob && entities.get(i) != mc.thePlayer && Client.settingsmanager.getSettingByName("Attack Mobs").getValBoolean()) {

@@ -278,7 +278,7 @@ public class FontRenderer {
 
     }
 
-    public void drawCenteredString(FontRenderer var1, String var2, int var3, int var4, int var5) {
+    public void drawCenteredString(FontRenderer var1, String var2, double var3, double var4, int var5) {
     	var1.drawStringWithShadow(var2, var3 - var1.getStringWidth(var2) / 2, var4, var5);
     }
 

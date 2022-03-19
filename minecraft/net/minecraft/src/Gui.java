@@ -40,6 +40,19 @@ public class Gui {
         drawCenteredUnicodeString(text, xCoord + (xSize / 2), yCoord, 0xFFFFFF);
     }
     
+    public static void drawRoundedRectArmor(int xCoord, int yCoord, int xSize, int ySize, int colour, String text) {
+        int width = xCoord + xSize;
+        int height = yCoord + ySize;
+
+        // Top rounding
+        Gui.drawRect(xCoord + 1, yCoord, width - 1, height, 0xB3232323);
+
+        // Middle rect
+        Gui.drawRect(xCoord, yCoord + 1, width, height - 1, 0x59232323);
+
+        drawCenteredUnicodeString(text, xCoord + (xSize / 2), yCoord, 0xFFFFFF);
+    }
+    
     public static void drawCenteredUnicodeString(String text, int xCoord, int yCoord, int colour) {
         FontRenderer font = Minecraft.theMinecraft.fontRenderer;
         boolean prevFlag;
@@ -143,4 +156,32 @@ public class Gui {
         var9.addVertexWithUV((double)(var1 + 0), (double)(var2 + 0), (double)this.zLevel, (double)((float)(var3 + 0) * var7), (double)((float)(var4 + 0) * var8));
         var9.draw();
     }
+    
+    
+    public static final double TWICE_PI = Math.PI*2;	
+    private static Tessellator tessellator = Tessellator.instance;
+    public static void drawRegularPolygon(double x, double y, double radius, int sides, int color)
+    {
+    float alpha = (float)(color >> 24 & 255) / 255.0F;
+    float red = (float)(color >> 16 & 255) / 255.0F;
+    float green = (float)(color >> 8 & 255) / 255.0F;
+    float blue = (float)(color & 255) / 255.0F;
+    GL11.glEnable(GL11.GL_BLEND);
+    GL11.glDisable(GL11.GL_TEXTURE_2D);
+    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+    tessellator.startDrawing(GL11.GL_TRIANGLE_FAN);
+    tessellator.addVertex(x, y, 0);
+        
+    for(int i = 0; i <= sides ;i++) 
+    {
+    	double angle = (TWICE_PI * i / sides) + Math.toRadians(180);
+    	GL11.glColor4f(red, green, blue, alpha);
+    	tessellator.addVertex(x + Math.sin(angle) * radius, y + Math.cos(angle) * radius, 0);
+    }
+        tessellator.draw();
+        
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_BLEND);
+    }
+    
 }

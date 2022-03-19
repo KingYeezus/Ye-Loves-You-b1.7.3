@@ -26,7 +26,7 @@ public class Timer extends Module{
 	}
 	
 	public void setup() {
-		Client.settingsmanager.rSetting(new Setting("Timer", this, 1.0, 1, 2, false));
+		Client.settingsmanager.rSetting(new Setting("Timer", this, 1.0, 1.0, 2.0, false));
 	}
 	
 	public void onDisable() {

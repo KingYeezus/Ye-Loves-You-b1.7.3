@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.MEDMEX.Event.Event;
 import net.minecraft.src.MEDMEX.Event.EventPacket;
 import net.minecraft.src.MEDMEX.settings.KeybindSetting;
@@ -60,6 +61,7 @@ public class Module {
 	public void onRenderEntities() {}
 	public void onLateRender() {}
 	public void onRenderGUI() {}
+	public void onLog(String bound, String p) {}
 	public String onMessage(String s) {
 		return s;
 	}

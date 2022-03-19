@@ -2,6 +2,11 @@ package net.minecraft.src;
 
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.src.MEDMEX.Client;
+import net.minecraft.src.MEDMEX.Modules.Render.ESP;
+import net.minecraft.src.MEDMEX.Utils.ChamsUtils;
+
 public class TileEntitySignRenderer extends TileEntitySpecialRenderer {
     private SignModel signModel = new SignModel();
 
@@ -40,6 +45,18 @@ public class TileEntitySignRenderer extends TileEntitySpecialRenderer {
         GL11.glPushMatrix();
         GL11.glScalef(var10, -var10, -var10);
         this.signModel.func_887_a();
+        if(ESP.instance.isEnabled() && Client.settingsmanager.getSettingByName("Misc ESP").getValBoolean()) {
+	        ChamsUtils.renderOne();
+	        this.signModel.func_887_a();
+	        ChamsUtils.renderTwo();
+	        this.signModel.func_887_a();
+	        ChamsUtils.renderThree();
+	        ChamsUtils.renderFour();
+	        GL11.glColor4f(0.078f, 1f, 0.921f, 1f);
+	        this.signModel.func_887_a();
+	        ChamsUtils.renderFive();
+        }
+        
         GL11.glPopMatrix();
         FontRenderer var17 = this.getFontRenderer();
         var12 = 0.016666668F * var10;

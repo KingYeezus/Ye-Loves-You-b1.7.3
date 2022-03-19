@@ -10,8 +10,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.src.Entity;
 import net.minecraft.src.EntityAnimal;
 import net.minecraft.src.EntityArrow;
+import net.minecraft.src.EntityBoat;
 import net.minecraft.src.EntityItem;
 import net.minecraft.src.EntityLiving;
+import net.minecraft.src.EntityMinecart;
 import net.minecraft.src.EntityMob;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.RenderGlobal;
@@ -46,10 +48,13 @@ public class ESP extends Module{
 		Client.settingsmanager.rSetting(new Setting("Item ESP", this, true));
 		Client.settingsmanager.rSetting(new Setting("Mob ESP", this, false));
 		Client.settingsmanager.rSetting(new Setting("Animal ESP", this, false));
+		Client.settingsmanager.rSetting(new Setting("Vehicle ESP", this, false));
+		Client.settingsmanager.rSetting(new Setting("Misc ESP", this, false));
 		ArrayList<String> options = new ArrayList<>();
 		options.add("Box");
 		options.add("Sphere");
 		options.add("Outline");
+		options.add("Filled");
 		Client.settingsmanager.rSetting(new Setting("ESP Mode", this, "Outline", options));
 		
 	}
@@ -70,6 +75,9 @@ public class ESP extends Module{
 		}
 		if(e instanceof EntityAnimal) {
 			return new Color(0f, 0.980f, 0.176f, 1);
+		}
+		if(e instanceof EntityBoat || e instanceof EntityMinecart) {
+			return new Color(0.874f, 1f, 0.078f, 1);
 		}
 		return null;
 	}

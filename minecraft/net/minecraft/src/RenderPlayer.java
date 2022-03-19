@@ -44,8 +44,10 @@ public class RenderPlayer extends RenderLiving {
 
     public void renderPlayer(EntityPlayer var1, double var2, double var4, double var6, float var8, float var9) {
     	if(var1 != Minecraft.theMinecraft.thePlayer && Chams.instance.isEnabled()) {
-      		 GL11.glEnable(32823);
-               GL11.glPolygonOffset(1.0F, -1100000.0F);
+      		 
+    		GL11.glEnable(32823);
+             GL11.glPolygonOffset(1.0F, -1100000.0F);
+             
        	}
         ItemStack var10 = var1.inventory.getCurrentItem();
         this.modelArmorChestplate.heldItemRight = this.modelArmor.heldItemRight = this.modelBipedMain.heldItemRight = var10 != null;
@@ -58,6 +60,7 @@ public class RenderPlayer extends RenderLiving {
         super.doRenderLiving(var1, var2, var11, var6, var8, var9);
         this.modelArmorChestplate.isSneak = this.modelArmor.isSneak = this.modelBipedMain.isSneak = false;
         this.modelArmorChestplate.heldItemRight = this.modelArmor.heldItemRight = this.modelBipedMain.heldItemRight = false;
+        
         if(var1 != Minecraft.theMinecraft.thePlayer && Chams.instance.isEnabled()) {
         	GL11.glDisable(32823);
             GL11.glPolygonOffset(1.0F, 1100000.0F);

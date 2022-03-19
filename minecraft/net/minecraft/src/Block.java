@@ -237,7 +237,7 @@ public class Block {
 
     public boolean shouldSideBeRendered(IBlockAccess var1, int var2, int var3, int var4, int var5) {
     	if(Xray.instance.isEnabled()) {
-    		if(blockID == 54 || blockID == 14 || blockID == 15 || blockID == 16 || blockID == 21 || blockID == 56 || blockID == 73 || blockID == 74 || blockID == 41 || blockID == 42 || blockID == 57 || blockID == 50 || blockID == 61 || blockID == 130 || blockID == 58 || blockID == 355 || blockID == 129)
+    		if(blockID == 54 || blockID == 14 || blockID == 15 || blockID == 16 || blockID == 21 || blockID == 56 || blockID == 73 || blockID == 74 || blockID == 41 || blockID == 42 || blockID == 57 || blockID == 50 || blockID == 61 || blockID == 130 || blockID == 58 || blockID == 355 || blockID == 129 || blockID == 90)
     			return true;
     	}
         if (var5 == 0 && this.minY > 0.0D) {
@@ -505,7 +505,7 @@ public class Block {
     }
 
     public int getRenderBlockPass() {
-        return !Xray.instance.isEnabled() || blockID == 54 || blockID == 14 || blockID == 15 || blockID == 16 || blockID == 21 || blockID == 56 || blockID == 73 || blockID == 74 || blockID == 41 || blockID == 42 || blockID == 57 || blockID == 50 || blockID == 61 || blockID == 130 || blockID == 58 || blockID == 355 || blockID == 129?  0 : 1 ;
+        return !Xray.instance.isEnabled() || blockID == 54 || blockID == 14 || blockID == 15 || blockID == 16 || blockID == 21 || blockID == 56 || blockID == 73 || blockID == 74 || blockID == 41 || blockID == 42 || blockID == 57 || blockID == 50 || blockID == 61 || blockID == 130 || blockID == 58 || blockID == 355 || blockID == 129 || blockID == 90?  0 : 1 ;
     }
 
     public boolean canPlaceBlockOnSide(World var1, int var2, int var3, int var4, int var5) {

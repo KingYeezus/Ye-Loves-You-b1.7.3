@@ -115,6 +115,7 @@ public class EntityClientPlayerMP extends EntityPlayerSP {
     }
 
     public void sendChatMessage(String var1) {
+    	
     	EventChat event = new EventChat(var1);
     	
     	Client.onEvent(event);

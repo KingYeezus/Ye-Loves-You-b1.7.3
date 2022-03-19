@@ -64,11 +64,11 @@ public class HUD {
 		int Z = (int) mc.thePlayer.posZ;
 		//mc.fontRenderer.drawStringWithShadow("§4TPS: §r"+(int)Timer.instance.getTickRate(), sr.getScaledWidth() - fr.getStringWidth("§4TPS: §r"+(int)Timer.instance.getTickRate()) - 4, sr.getScaledHeight() - 30, -1);
 		if(mc.thePlayer.dimension == -1) {
-		mc.fontRenderer.drawStringWithShadow("§4O:§r §7[§f"+X*8+", "+Y+", "+Z*8+"§7]", sr.getScaledWidth() - fr.getStringWidth("O: ["+X*8+", "+Y+", "+Z*8+"]") - 4, sr.getScaledHeight() - 20, -1);
-		mc.fontRenderer.drawStringWithShadow("§4N:§r §7[§f"+X+", "+Y+", "+Z+"§7]", sr.getScaledWidth() - fr.getStringWidth("N: ["+X+", "+Y+", "+Z+"]") - 4, sr.getScaledHeight() - 10, -1);
+		mc.fontRenderer.drawStringWithShadow("§bO:§r §6[§f"+X*8+", "+Y+", "+Z*8+"§6]", sr.getScaledWidth() - fr.getStringWidth("O: ["+X*8+", "+Y+", "+Z*8+"]") - 4, sr.getScaledHeight() - 20, -1);
+		mc.fontRenderer.drawStringWithShadow("§bN:§r §6[§f"+X+", "+Y+", "+Z+"§6]", sr.getScaledWidth() - fr.getStringWidth("N: ["+X+", "+Y+", "+Z+"]") - 4, sr.getScaledHeight() - 10, -1);
 		}else {	
-		mc.fontRenderer.drawStringWithShadow("§4O:§r §7[§f"+X+", "+Y+", "+Z+"§7]", sr.getScaledWidth() - fr.getStringWidth("O: ["+X+", "+Y+", "+Z+"]") - 4, sr.getScaledHeight() - 20, -1);
-		mc.fontRenderer.drawStringWithShadow("§4N:§r §7[§f"+X/8+", "+Y+", "+Z/8+"§7]", sr.getScaledWidth() - fr.getStringWidth("N: ["+X/8+", "+Y+", "+Z/8+"]") - 4, sr.getScaledHeight() - 10, -1);
+		mc.fontRenderer.drawStringWithShadow("§bO:§r §6[§f"+X+", "+Y+", "+Z+"§6]", sr.getScaledWidth() - fr.getStringWidth("O: ["+X+", "+Y+", "+Z+"]") - 4, sr.getScaledHeight() - 20, -1);
+		mc.fontRenderer.drawStringWithShadow("§bN:§r §6[§f"+X/8+", "+Y+", "+Z/8+"§6]", sr.getScaledWidth() - fr.getStringWidth("N: ["+X/8+", "+Y+", "+Z/8+"]") - 4, sr.getScaledHeight() - 10, -1);
 		}
 		}
 		
@@ -82,8 +82,8 @@ public class HUD {
 		
 		Collections.sort(Client.modules, new ModuleComparator());
 		if(GameSettings.showDebugInfo == false) {
-			mc.fontRenderer.drawStringWithShadow("§c"+Client.name +"§f b"+Client.version, 4, 4, -1);
-			//mc.fontRenderer.drawStringWithShadow("N", 10+fr.getStringWidth(Client.name), 4,  ColorUtil.astolfoColorsDraw(1000, -1000));
+			mc.fontRenderer.drawStringWithShadow(Client.name, 4, 4, 0xff42b6f5);
+			mc.fontRenderer.drawStringWithShadow("b"+Client.version, 8+fr.getStringWidth(Client.name), 4, 0xfff57e42);
 		}
 		
 		int count = 0;
@@ -96,8 +96,12 @@ public class HUD {
 				continue;
 
 			if(GameSettings.showDebugInfo == false) {
-			mc.fontRenderer.drawStringWithShadow(m.name + m.attribute, sr.getScaledWidth() - fr.getStringWidth(m.name + m.attribute) - 4, 4 + count * (9), ColorUtil.astolfoColorsDraw(1000, -count*1000));
-			GL11.glScaled(1, 1, 1);
+				Gui.drawRect(sr.getScaledWidth() - fr.getStringWidth(m.name + m.attribute) - 10, 3 + count * 9, sr.getScaledWidth() - 8, 12 + (count) * 9, 0x80232323);
+			
+			mc.fontRenderer.drawStringWithShadow(m.name + m.attribute, sr.getScaledWidth() - fr.getStringWidth(m.name + m.attribute) - 8, 4 + count * 9, ColorUtil.astolfoColorsDraw(1000, -1000));
+			
+			Gui.drawRect(sr.getScaledWidth() - 3.5, 4, sr.getScaledWidth() - 5, 12 + count * 9, ColorUtil.astolfoColorsDraw(1000, -1000));
+			
 			}
 			count++;
 			
